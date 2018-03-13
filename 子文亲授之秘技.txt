@@ -1,0 +1,4 @@
+我再对上述进行一些补充，
+熟悉 spring mvc 和 mybatis 和 doubleX ，，使用Maven
+还需要会 关系型数据库（M或者O） 和  非关系性数据库（Redis） 和 Linux 的部署（装个mysql，装个tomcat，装个Redis等等） 
+另外 Nginx，ActiveMQ，svn（git也好
