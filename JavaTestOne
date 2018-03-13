@@ -1,0 +1,97 @@
+package com.ebd.book.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ebd.book.model.Book;
+import com.ebd.book.service.BookService;
+import com.ebd.util.DBHelper;
+import com.ebd.util.SqlReader;
+
+@Service("testService")
+public class BookServiceImpl implements BookService {
+	
+	@Autowired
+	private DBHelper dBHelper;
+
+	@Override
+	public int insert(Book book) {
+		String sql = SqlReader.getInstance("INSERTBOOK").getSqlString();
+		Object[] parms = {
+				book.getId(),
+				book.getName(),
+				book.getNum(),
+				book.getTypeid()};
+		
+		
+		return dBHelper.update(sql, parms);
+	}
+
+	@Override
+	public int delete(String id) {
+		String sql = SqlReader.getInstance("DELETE").getSqlString();
+		Object[] parms = {id};
+		
+		
+		return dBHelper.update(sql, parms);
+	}
+
+	@Override
+	public int update(Book book) {
+		String sql = SqlReader.getInstance("UPDATE").getSqlString();
+		Object[] parms = {
+				
+				book.getName(),
+				book.getNum(),
+				book.getTypeid(),
+				book.getId(),};
+		
+		
+		return dBHelper.update(sql, parms);
+	}
+
+	@Override
+	public Book getBook(String k1, String k2, String k3, String keyword) {
+		String sql = SqlReader.getInstance("GETBOOK").getSqlString();
+		
+		if( k1 != null && !"".equals(k1)){
+			sql = sql.replace("(1)", " and id = '"+k1+"' (1)");
+		}
+		if( k2 != null && !"".equals(k2)){
+			sql = sql.replace("(1)", " and name = '"+k2+"' (1)");
+		}
+		if( k3 != null && !"".equals(k3)){
+			sql = sql.replace("(1)", " typeid = '"+k3+"' (1)");
+		}
+	
+		if( keyword!=null&&!"".equals( keyword)){
+			sql = sql.replace("(1)", "and (name like '%"+keyword+"%' or id like '%"+keyword+"%' or typeid like '%"+keyword+"%')");
+		}
+		
+		sql = sql.replace("(1)","");
+		
+		Book book = new Book();
+		Map<String, Object> map = dBHelper.getObjectById(sql);
+		try {
+						
+					BeanUtils.setProperty(book, "id", map.get("ID"));
+					BeanUtils.setProperty(book, "NAME", map.get("NAME"));
+					BeanUtils.setProperty(book, "num", map.get("NUM"));
+					BeanUtils.setProperty(book, "datetime", map.get("DATETIME"));
+					BeanUtils.setProperty(book, "typeid", map.get("TYPEID"));
+
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		return book;
+	}
+	
+	
+}
