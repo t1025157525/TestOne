@@ -1,4 +1,6 @@
-ÎÒÔÙ¶ÔÉÏÊö½øĞĞÒ»Ğ©²¹³ä£¬
+ssssssss
+
+ÒÔÙ¶ÔÉÏÊö½øĞĞÒ»Ğ©²¹³ä£¬
 ÊìÏ¤ spring mvc ºÍ mybatis ºÍ doubleX £¬£¬Ê¹ÓÃMaven
 »¹ĞèÒª»á ¹ØÏµĞÍÊı¾İ¿â£¨M»òÕßO£© ºÍ  ·Ç¹ØÏµĞÔÊı¾İ¿â£¨Redis£© ºÍ Linux µÄ²¿Êğ£¨×°¸ömysql£¬×°¸ötomcat£¬×°¸öRedisµÈµÈ£© 
 ÁíÍâ Nginx£¬ActiveMQ£¬svn£¨gitÒ²ºÃ
